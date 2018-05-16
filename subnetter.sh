@@ -17,27 +17,21 @@ if [[ "$sub" -ge "24" ]]
 then
     x=4
     m=$((32-sub))
-    c=$((2**$m))
-    li=$((ip$x+c-1))
 elif [[ "$sub" -ge "16" && "$sub" -le "23" ]]
 then
     x=3
     m=$((24-sub))
-    c=$((2**$m))
-    li=$((ip$x+c-1))
 elif [[ "$sub" -ge "8" && "$sub" -le "15" ]]
 then
     x=2
     m=$((16-sub))
-    c=$((2**$m))
-    li=$((ipx+c-1))
 elif [[ "$sub" -ge "0" && "$sub" -le "7" ]]
 then
     x=1
     m=$((8-sub))
-    c=$((2**$m))
-    li=$((ipi$x+c-1))
 fi
+c=$((2**$m))
+li=$((ip$x+c-1))
 
 for r in $(eval echo {$r..1} )
 do
@@ -51,11 +45,11 @@ q=$(($c/$r))
         c=$((c-p))
         sn=$((li-c+1))
         sb=$((8*$x-n))
-for j in $(eval echo {$n..1} )
-do
-s=$((2**($j-1)))
-b=$((b+s))
-done
+        for j in $(eval echo {$n..1} )
+        do
+            s=$((2**($j-1)))
+            b=$((b+s))
+        done
     fi
   (( n-- ))
   done
